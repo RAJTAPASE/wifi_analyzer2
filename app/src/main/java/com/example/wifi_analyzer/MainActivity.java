@@ -18,10 +18,8 @@ import java.io.OutputStreamWriter;
 import java.util.Calendar;
 import java.util.Date;
 
+
 public class MainActivity extends AppCompatActivity {
-    private WifiManager wifiManager;
-    private ListView listView;
-    private int size=0;
 
     TextView st;
     Button bt;
@@ -30,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         st = (TextView)findViewById(R.id.output);
 
         bt = (Button)findViewById(R.id.check_wifi);
@@ -41,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                display_output();
+                disp();
 
             }
         });
@@ -49,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         store.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                savet_to_file();
+                savetofile();
 
             }
         });
@@ -58,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Runnable r = new Runnable() {
             public void run() {
-                dispplay_output();
-                save_to_file();
+                disp();
+                savetofile();
                 handler.postDelayed(this, 60000);
             }
         };
@@ -67,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(r, 1000);
     }
     // Strength calc and display
-    private void display_output(){
+    private void disp(){
         WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         int rssi = wifiManager.getConnectionInfo().getRssi();
         int level = WifiManager.calculateSignalLevel(rssi,5);

@@ -10,17 +10,25 @@
         android:id="@+id/check_wifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="104dp"
         android:text="Check WIFI"
-        tools:layout_editor_absoluteX="61dp"
-        tools:layout_editor_absoluteY="579dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/file_save"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/file_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="63dp"
+        android:layout_marginEnd="76dp"
+        android:layout_marginBottom="104dp"
         android:text="save to file"
-        tools:layout_editor_absoluteX="224dp"
-        tools:layout_editor_absoluteY="579dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/check_wifi" />
 
     <TextView
         android:id="@+id/output"
