@@ -34,9 +34,13 @@
         android:id="@+id/output"
         android:layout_width="331dp"
         android:layout_height="493dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="40dp"
         android:text="output"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="46dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="all available networks with strength" />
 
 </android.support.constraint.ConstraintLayout>

@@ -20,7 +20,6 @@ import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity {
-
     TextView st;
     Button bt;
     Button store;
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     //Store in a file
     private void savetofile(){
 
-        File directory = new File(Environment.getExternalStorageDirectory() + java.io.File.separator +"WSS");
+        File directory = new File(Environment.getExternalStorageDirectory() + java.io.File.separator +"Wifi_analyzer");
         if (!directory.exists())
             Toast.makeText(this, (directory.mkdirs() ? "Directory has been created" : "Directory not created"), Toast.LENGTH_SHORT).show();
         else
