@@ -23,10 +23,10 @@
         tools:layout_editor_absoluteY="579dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/output"
         android:layout_width="331dp"
         android:layout_height="493dp"
-        android:text="TextView"
+        android:text="output"
         tools:layout_editor_absoluteX="40dp"
         tools:layout_editor_absoluteY="46dp"
         tools:text="all available networks with strength" />
