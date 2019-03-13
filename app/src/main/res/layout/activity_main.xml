@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/check_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check WIFI"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="579dp" />
+
+    <Button
+        android:id="@+id/file_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="save to file"
+        tools:layout_editor_absoluteX="224dp"
+        tools:layout_editor_absoluteY="579dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="331dp"
+        android:layout_height="493dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="46dp"
+        tools:text="all available networks with strength" />
+
+</android.support.constraint.ConstraintLayout>
