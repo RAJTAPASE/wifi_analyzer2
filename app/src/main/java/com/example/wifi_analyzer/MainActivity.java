@@ -21,32 +21,32 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     TextView st;
-    Button bt;
-    Button store;
+    Button wifi_check,save_file;
     Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
-
         st = (TextView)findViewById(R.id.output);
+        wifi_check = (Button)findViewById(R.id.check_wifi);
+        save_file = (Button)findViewById(R.id.file_save);
 
-        bt = (Button)findViewById(R.id.check_wifi);
-        store = (Button)findViewById(R.id.file_save);
 
-        bt.setOnClickListener(new View.OnClickListener() {
+        wifi_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disp();
+                display_output();
 
             }
         });
 
-        store.setOnClickListener(new View.OnClickListener(){
+        save_file.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                savetofile();
+                save_to_file();
 
             }
         });
@@ -55,38 +55,28 @@ public class MainActivity extends AppCompatActivity {
 
         final Runnable r = new Runnable() {
             public void run() {
-                disp();
-                savetofile();
-                handler.postDelayed(this, 60000);
+                display_output();
+                save_to_file();
+                handler.postDelayed(this, 30000);
             }
         };
 
         handler.postDelayed(r, 1000);
     }
-    // Strength calc and display
-    private void disp(){
-        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        int rssi = wifiManager.getConnectionInfo().getRssi();
-        int level = WifiManager.calculateSignalLevel(rssi,5);
-        String ssid = wifiManager.getConnectionInfo().getSSID();
-        String MacAddr = wifiManager.getConnectionInfo().getMacAddress();
 
-        st.setText("\t\tSignal Strength of "+ ssid+"\n\n\t\tMac Address = "+ MacAddr+"\n\n\t\tRSSI = "+ rssi + " dbm \n\n\t\tLevel = "+ level + " out of 5");
-    }
 
-    //Store in a file
-    private void savetofile(){
+    private void save_to_file(){
 
         File directory = new File(Environment.getExternalStorageDirectory() + java.io.File.separator +"Wifi_analyzer");
         if (!directory.exists())
-            Toast.makeText(this, (directory.mkdirs() ? "Directory has been created" : "Directory not created"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, (directory.mkdirs() ? "Directory created" : "Unable to create Directory"), Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "File Updated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "File has been Updated", Toast.LENGTH_SHORT).show();
         System.out.println(directory);
-        File file = new File(Environment.getExternalStorageDirectory() + java.io.File.separator +"WSS" + java.io.File.separator + "WSS.txt");
+        File file = new File(Environment.getExternalStorageDirectory() + java.io.File.separator +"Wifi_analyzer" + java.io.File.separator + "Wifi_Analyzer.txt");
         System.out.println(file);
 
-        Date currentTime = Calendar.getInstance().getTime();
+        Date Time = Calendar.getInstance().getTime();
         if(!file.exists()) {
             try {
                 file.createNewFile();
@@ -98,10 +88,21 @@ public class MainActivity extends AppCompatActivity {
         try {
             OutputStreamWriter file_writer = new OutputStreamWriter(new FileOutputStream(file,true));
             BufferedWriter buffered_writer = new BufferedWriter(file_writer);
-            buffered_writer.write("############\n"+currentTime+"\n"+st.getText().toString()+"\n");
+            buffered_writer.write("############\n"+Time+"\n"+st.getText().toString()+"\n");
             buffered_writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void display_output(){
+        WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        int rssi = wifiManager.getConnectionInfo().getRssi();
+        int level = WifiManager.calculateSignalLevel(rssi,5);
+        String ssid = wifiManager.getConnectionInfo().getSSID();
+        String Mac = wifiManager.getConnectionInfo().getMacAddress();
+
+        st.setText("\t\tSignal Strength of "+ ssid+"\n\n\t\tRSSI = "+ rssi + " dbm \n\n\t\tLevel = "+ level + " out of 5"+"\n\n\t\tMac Address = "+ Mac);
     }
 }
